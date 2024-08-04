@@ -20,27 +20,15 @@ class RedisClient {
   }
 
   async get(key) {
-    try {
-      return await this.getAsync(key);
-    } catch (err) {
-      console.error(`Error getting key "${key}": ${err}`);
-    }
+    return await this.getAsync(key);
   }
 
   async set(key, value, duration) {
-    try {
-      await this.setexAsync(key, duration, value.toString());
-    } catch (err) {
-      console.error(`Error setting key "${key}" with value "${value}": ${err}`);
-    }
+    await this.setexAsync(key, duration, value.toString());
   }
 
   async del(key) {
-    try {
-      await this.delAsync(key);
-    } catch (err) {
-      console.error(`Error deleting key "${key}": ${err}`);
-    }
+    await this.delAsync(key);
   }
 }
 
