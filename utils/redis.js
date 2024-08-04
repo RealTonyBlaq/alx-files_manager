@@ -31,6 +31,7 @@ class RedisClient {
   }
 
   async get(key) {
+    if 
     try {
       const value = await this.client.get(key);
       return value;
