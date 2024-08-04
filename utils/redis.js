@@ -33,8 +33,9 @@ class RedisClient {
   async del(key) {
     try {
       const reply = await this.client.del(key);
+      console.log(`Reply: ${}`)
     } catch (err) {
-      console.error
+      console.error(`Error: ${err}`);
     }
   }
 }
