@@ -9,8 +9,7 @@ class RedisClient {
       console.error(`Connection error: ${err}`);
     }.bind(this));
 
-    this.client.on('ready', 
-    }.bind(this));
+    this.client.on('ready', this.setStatus.bind(this));
 
     this.clientConnect();
 
