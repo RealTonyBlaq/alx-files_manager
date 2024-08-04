@@ -8,7 +8,9 @@ class RedisClient {
     this.client.connect();
   }
 
-  isAlive()
+  isAlive() {
+    return this.client.connected;
+  }
 
 
 }
