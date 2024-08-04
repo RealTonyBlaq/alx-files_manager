@@ -7,6 +7,8 @@ class DBClient {
     this.database = process.env.DB_DATABASE || 'files_manager';
 
     this.client = new MongoClient(`mongodb://${host}:${port}`);
+
+    this.clientConnect.bind(this);
   }
 
   async clientConnect() {
