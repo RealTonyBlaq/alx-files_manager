@@ -31,7 +31,6 @@ class RedisClient {
   }
 
   async get(key) {
-    if 
     try {
       const value = await this.client.get(key);
       return value;
@@ -59,4 +58,6 @@ class RedisClient {
   }
 }
 
-export default new RedisClient();
+const redis
+
+export default ;
