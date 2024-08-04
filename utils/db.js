@@ -1,3 +1,4 @@
+import { use } from 'chai';
 import MongoClient from 'mongodb';
 
 class DBClient {
@@ -28,6 +29,10 @@ class DBClient {
 
   async nbUsers() {
     const users = await this.db.collection('users');
-    
+    return users.length;
+  }
+
+  async nbFiles() {
+    const files = await this.
   }
 }
