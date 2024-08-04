@@ -12,14 +12,16 @@ class RedisClient {
       this.isConnected = true;
     });
 
-    await this.client.connect();
+    this.connect();
 
     this.client.on('end', () => {
         this.isConnected = false;
     });
   }
 
-  connect()
+  async connect() {
+    await this.client.connect();
+  }
 
   isAlive() {
     return this.isConnected;
