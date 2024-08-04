@@ -10,7 +10,7 @@ class DBClient {
   }
 
   async clientConnect() {
-    
+    try
   }
   isAlive() {
   }
