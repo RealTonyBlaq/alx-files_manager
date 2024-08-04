@@ -37,3 +37,7 @@ class DBClient {
     return files.length;
   }
 }
+
+const dbClient = new DBClient();
+
+export default dbClient;
