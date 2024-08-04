@@ -32,7 +32,9 @@ class RedisClient {
 
   async del(key) {
     try {
-      const reply = await this.client.
+      const reply = await this.client.del(key);
+    } catch (err) {
+      console.error
     }
   }
 }
