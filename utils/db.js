@@ -27,6 +27,6 @@ class DBClient {
   }
 
   async nbUsers() {
-    
+    const users = await this.
   }
 }
