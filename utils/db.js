@@ -22,5 +22,6 @@ class DBClient {
   }
 
   isAlive() {
+    return this.connected;
   }
 }
