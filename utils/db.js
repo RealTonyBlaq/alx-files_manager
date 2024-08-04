@@ -1,3 +1,5 @@
+
+
 class DBClient {
   constructor() {
     this.host = process.env.DB_HOST || 'localhost';
@@ -6,6 +8,6 @@ class DBClient {
   }
 
   isAlive() {
-    
+
   }
 }
