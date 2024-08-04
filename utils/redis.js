@@ -5,21 +5,23 @@ class RedisClient {
     this.client = createClient();
     this.isConnected = false;
 
-    this.client.on('error', (err) => console.error(`Connection error: ${err}`));
+    this.client.on('error', (err) => {
+      console.error(`Connection error: ${err}`;)
+    });
 
     this.client.on('ready', () => {
       console.log('Connected');
       this.isConnected = true;
     });
 
-    this.connect();
+    this.clientConnect();
 
     this.client.on('end', () => {
         this.isConnected = false;
     });
   }
 
-  async connect() {
+  async clientConnect() {
     await this.client.connect();
   }
 
