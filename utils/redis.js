@@ -9,25 +9,20 @@ class RedisClient {
       console.error(`Connection error: ${err}`);
     });
 
-    this.client.on('ready', this.setStatus.bind(this));
-
-    this.clientConnect();
-
     this.client.on('end', () => {
       this.isConnected = false;
     });
+
+    this.clientConnect();
   }
 
   async clientConnect() {
     try {
       await this.client.connect();
+      this.isConnected = true; // Set the status directly after connection
     } catch (err) {
       console.error(`Connection error: ${err}`);
     }
-  }
-
-  setStatus() {
-    this.isConnected = true;
   }
 
   isAlive() {
@@ -62,6 +57,7 @@ class RedisClient {
   }
 }
 
-// Ensure the RedisClient instance is connected before exporting
+
 const redisClient = new RedisClient();
+
 export default redisClient;
