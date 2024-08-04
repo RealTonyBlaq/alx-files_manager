@@ -1,4 +1,4 @@
-import mongodb from 'mongodb';
+import { MongoClient } from 'mongodb';
 
 class DBClient {
   constructor() {
@@ -6,7 +6,7 @@ class DBClient {
     this.port = process.env.DB_PORT || 27017;
     this.database = process.env.DB_DATABASE || 'files_manager';
 
-    const client = mongodb.
+    const client = MongoClient
   }
 
   isAlive() {
