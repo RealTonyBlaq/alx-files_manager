@@ -26,6 +26,7 @@ class RedisClient {
   }
 
   isAlive() {
+    this.clientConnect();
     return this.isConnected;
   }
 
@@ -43,6 +44,7 @@ class RedisClient {
   }
 
   async set(key, value, duration) {
+
     try {
       const reply = await this.client.SETEX(key, duration, value.toString());
       console.log(reply);
