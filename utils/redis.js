@@ -12,7 +12,6 @@ class RedisClient {
       this.isConnected = false;
     });
 
-    this.clientConnect();
   }
 
   async clientConnect() {
@@ -25,6 +24,7 @@ class RedisClient {
   }
 
   isAlive() {
+    this.clientConnect();
     return this.isConnected;
   }
 
