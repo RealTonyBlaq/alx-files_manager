@@ -7,17 +7,17 @@ class RedisClient {
 
     this.client.on('error', (err) => {
       console.error(`Connection error: ${err}`);
-      return this.isConnected = false;
+      this.isConnected = false;
     });
 
     this.client.on('ready', () => {
-      return this.isConnected = true;
+      this.isConnected = true;
     });
 
     this.clientConnect();
 
     this.client.on('end', () => {
-      return this.isConnected = false;
+      this.isConnected = false;
     });
   }
 
@@ -39,10 +39,6 @@ class RedisClient {
   }
 
   async set(key, value, duration) {
-    if (!this.isAlive()) {
-      this.clientConnect();
-    }
-
     try {
       const reply = await this.client.SETEX(key, duration, value.toString());
       console.log(reply);
