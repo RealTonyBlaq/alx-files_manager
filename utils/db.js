@@ -33,6 +33,7 @@ class DBClient {
   }
 
   async nbFiles() {
-    const files = await this.
+    const files = await this.db.collection('files');
+    return files.length;
   }
 }
