@@ -4,4 +4,4 @@ class DBClient {
   }
 }
 
-console.log(process.env);
+console.log(process.env.ET_DB_HOST);
