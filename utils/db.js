@@ -27,6 +27,6 @@ class DBClient {
   }
 
   async nbUsers() {
-
+    
   }
 }
