@@ -9,7 +9,7 @@ class DBClient {
     this.client = new MongoClient(`mongodb://${host}:${port}`);
 
     this.clientConnect.bind(this);
-    this.db = this.client.db(this)
+    this.db = this.client.db(this.database);
   }
 
   async clientConnect() {
