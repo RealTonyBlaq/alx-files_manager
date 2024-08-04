@@ -21,8 +21,8 @@ class RedisClient {
     }
   }
 
-  async set(key, value) {
-    
+  async set(key, value, duration) {
+
   }
 
 }
