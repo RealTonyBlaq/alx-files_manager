@@ -9,6 +9,7 @@ class DBClient {
     this.client = new MongoClient(`mongodb://${host}:${port}`);
 
     this.clientConnect.bind(this);
+    this.db = 
   }
 
   async clientConnect() {
@@ -26,6 +27,6 @@ class DBClient {
   }
 
   async nbUsers() {
-    
+
   }
 }
