@@ -14,9 +14,10 @@ class RedisClient {
 
   async get(key) {
     try {
+      const value = await this.client.get(key);
+    } catch (err) {
       
     }
-    const value = await this.client.get(key);
   }
 
 }
