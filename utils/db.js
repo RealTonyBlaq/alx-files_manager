@@ -9,6 +9,9 @@ class DBClient {
     this.client = new MongoClient(`mongodb://${host}:${port}`);
   }
 
+  async clientConnect() {
+
+  }
   isAlive() {
   }
 }
