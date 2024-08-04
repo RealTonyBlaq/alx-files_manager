@@ -32,7 +32,7 @@ class RedisClient {
 
   async del(key) {
     try {
-      
+      const reply = await this.client.
     }
   }
 }
