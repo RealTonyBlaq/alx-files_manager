@@ -9,8 +9,9 @@ class RedisClient {
   }
 
   isAlive() {
-    const status = this.client.on('connect', () => {
-        
+    let status = false;
+    this.client.on('connect', () => {
+      
     })
   }
 
