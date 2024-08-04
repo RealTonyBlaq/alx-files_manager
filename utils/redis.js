@@ -11,8 +11,9 @@ class RedisClient {
   isAlive() {
     let status = false;
     this.client.on('connect', () => {
-      
-    })
+      status = true;
+    });
+    
   }
 
   async get(key) {
