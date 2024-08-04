@@ -15,9 +15,10 @@ class DBClient {
       this.connected = true;
     } catch (err) {
       console.log(err);
-      this.connected 
+      this.connected = false;
     }
   }
+
   isAlive() {
   }
 }
