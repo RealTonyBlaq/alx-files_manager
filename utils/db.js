@@ -1,3 +1,5 @@
 class DBClient {
-  constructor(host)
+  constructor(host, port, database) {
+    this.host = process.env()
+  }
 }
