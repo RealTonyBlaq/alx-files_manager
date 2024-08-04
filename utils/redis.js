@@ -15,8 +15,9 @@ class RedisClient {
   async get(key) {
     try {
       const value = await this.client.get(key);
+      return value;
     } catch (err) {
-      console.log(`Fetch error`)
+      console.log(`Fetch error: ${err}`);
     }
   }
 
