@@ -4,3 +4,4 @@ class DBClient {
   }
 }
 
+console.log(process.env);
