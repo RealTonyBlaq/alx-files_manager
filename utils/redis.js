@@ -40,6 +40,4 @@ class RedisClient {
   }
 }
 
-const myRedis = RedisClient();
-
-export default myRedis;
+export default RedisClient;
