@@ -25,7 +25,7 @@ class RedisClient {
     try {
       const reply = await this.client.setex(key, duration, value);
     } catch (err) {
-      
+      console.error(`Set error: ${err}`);
     }
   }
 
