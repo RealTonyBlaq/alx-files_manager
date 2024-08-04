@@ -25,7 +25,10 @@ class RedisClient {
     await this.client.connect();
   }
 
-  setStatus(status)
+  setStatus(status) {
+    this.isConnected = status;
+  }
+
   isAlive() {
     return this.isConnected;
   }
