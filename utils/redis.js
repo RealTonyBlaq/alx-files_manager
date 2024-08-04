@@ -30,7 +30,10 @@ class RedisClient {
   }
 
   async get(key) {
-    if (!this.)
+    if (!this.isAlive()) {
+      await this.clientConnect();
+    }
+
     try {
       const value = await this.client.get(key);
       return value;
