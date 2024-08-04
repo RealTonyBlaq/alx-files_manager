@@ -10,7 +10,11 @@ class DBClient {
   }
 
   async clientConnect() {
-    try
+    try {
+      await this.client.connect();
+    } catch (err) {
+      console.log()
+    }
   }
   isAlive() {
   }
