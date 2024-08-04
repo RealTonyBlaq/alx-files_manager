@@ -6,7 +6,7 @@ class DBClient {
     this.port = process.env.DB_PORT || 27017;
     this.database = process.env.DB_DATABASE || 'files_manager';
 
-    const client = MongoClient()
+    const client = MongoClient('mongodb://localhost:27017');
   }
 
   isAlive() {
