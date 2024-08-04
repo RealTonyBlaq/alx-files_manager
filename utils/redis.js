@@ -29,4 +29,7 @@ class RedisClient {
     }
   }
 
+  async del(key) {
+    
+  }
 }
