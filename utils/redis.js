@@ -12,5 +12,6 @@ class RedisClient {
     return this.client.connected;
   }
 
+  get()
 
 }
