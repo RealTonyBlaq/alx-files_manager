@@ -1,3 +1,3 @@
 class DBClient {
-  
+  constructor(host)
 }
