@@ -1,4 +1,4 @@
-
+import mongodb from 'mongodb';
 
 class DBClient {
   constructor() {
