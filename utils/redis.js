@@ -9,7 +9,9 @@ class RedisClient {
   }
 
   isAlive() {
-    stathis.client.on('connect', () => )
+    const status = this.client.on('connect', () => {
+        
+    })
   }
 
   async get(key) {
