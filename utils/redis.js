@@ -11,7 +11,6 @@ class RedisClient {
     });
 
     this.client.on('ready', () => {
-      console.log('Connected');
       return this.isConnected = true;
     });
 
