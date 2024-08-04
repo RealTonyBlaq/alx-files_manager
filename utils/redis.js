@@ -8,6 +8,7 @@ class RedisClient {
     this.client.on('error', (err) => console.error(`Connection error: ${err}`));
 
     this.client.on('ready', () => {
+      console.log('Connected');
       this.isConnected = true;
     });
 
