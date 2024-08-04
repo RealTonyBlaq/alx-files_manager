@@ -27,6 +27,7 @@ class DBClient {
   }
 
   async nbUsers() {
-    const users = await this.
+    const users = await this.db.collection('users');
+    
   }
 }
