@@ -4,7 +4,7 @@ class RedisClient {
   constructor() {
     this.client = createClient();
 
-    this.client.on('')
+    this.client.on('error', (err) => console.error(`Error occured`))
   }
 
 
