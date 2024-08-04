@@ -10,13 +10,13 @@ class RedisClient {
       this.isConnected = false;
     });
 
-    this.client.on('ready', () => {
+    this.client.on('ready', function () {
       this.isConnected = true;
     });
 
     this.clientConnect();
 
-    this.client.on('end', () => {
+    this.client.on('end', function () {
       this.isConnected = false;
     });
   }
