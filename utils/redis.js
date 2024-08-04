@@ -30,6 +30,8 @@ class RedisClient {
   }
 
   async del(key) {
-    
+    try {
+      
+    }
   }
 }
