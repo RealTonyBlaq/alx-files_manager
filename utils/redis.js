@@ -41,7 +41,7 @@ class RedisClient {
 
   async set(key, value, duration) {
     try {
-      const reply = await this.client.SETEX(key, );
+      const reply = await this.client.SETEX(key, duration, value);
       console.log(reply);
     } catch (err) {
       console.error(`Set error: ${err}`);
