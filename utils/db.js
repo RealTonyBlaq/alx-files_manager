@@ -12,8 +12,10 @@ class DBClient {
   async clientConnect() {
     try {
       await this.client.connect();
+      this.connected = true;
     } catch (err) {
-      console.log()
+      console.log(err);
+      this.connected 
     }
   }
   isAlive() {
