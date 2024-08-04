@@ -12,7 +12,7 @@ class RedisClient {
       this.isConnected = true;
     });
 
-
+    await this.client.connect();
 
     this.client.on('end', () => {
         this.isConnected = false;
