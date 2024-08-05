@@ -3,11 +3,9 @@ import sha1 from 'sha1';
 
 const { MongoClient } = pkg;
 
-
 function hashPassword(password) {
   return sha1(password);
 }
-
 
 class DBClient {
   constructor() {
@@ -67,11 +65,12 @@ class DBClient {
     }
   }
 
-  async createUser(email, password) {
+  async createUser(email, pwd) {
     if (!(await this.userExists(email))) {
-      password = hashPassword(password);
-      const reply = await this.users.insertOne({ email, password });
-      return await this.retrieveUser(email);
+      const password = hashPassword(pwd);
+      await this.users.insertOne({ email, password });
+      const user = await this.retrieveUser(email);
+      return user;
     }
     throw new Error(`User ${email} exists`);
   }
