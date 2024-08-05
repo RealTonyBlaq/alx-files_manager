@@ -1,5 +1,6 @@
 import e from 'express';
 import dbClient from './utils/db.js';
+import { v4 } from 'uuid';
 
 const waitConnection = () => {
     return new Promise((resolve, reject) => {
@@ -36,10 +37,15 @@ const waitConnection = () => {
     console.log('\nTesting user creation');
     //console.log('success =>', await dbClient.createUser('ifeanyi@yahoo.com', 'pwd'));
     try {
-      console.log(await dbClient.createUser('Ifeanyi2', 'pwd'));
+      console.log(await dbClient.createUser('Ifeanyi3', 'pwd'));
     } catch (err) {
       console.error(err);
     }
     console.log('\nTesting retrieveUser');
-    console.log('GET =>', await dbClient.retrieveUser('ifeanyi@yahoo.com'));
+    console.log('GET =>', await dbClient.retrieveUser({ email: 'ifeanyi@yahoo.com'}));
+
+    console.log('Testing update user');
+    const token = v4();
+    //console.log(await dbClient.updateUser('Ifeanyi3', { token }));
+    console.log(await dbClient.updateUser('ifeks', { token }));
 })();
