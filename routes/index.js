@@ -5,13 +5,9 @@ import UsersController from '../controllers/UsersController.js';
 
 const router = Router();
 
-router.get('/status', (req, res) => {
-  return res.status(200).send(AppController.getStatus());
-});
+router.get('/status', (req, res) => res.status(200).send(AppController.getStatus()));
 
-router.get('/stats', async (req, res) => {
-  return res.status(200).send(await AppController.getStats());
-});
+router.get('/stats', async (req, res) => res.status(200).send(await AppController.getStats()));
 
 router.post('/users', async (req, res) => {
   const { email, password } = req.body;
