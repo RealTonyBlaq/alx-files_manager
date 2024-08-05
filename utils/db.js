@@ -69,18 +69,21 @@ class DBClient {
     if (!(await this.userExists(email))) {
       const password = hashPassword(pwd);
       await this.users.insertOne({ email, password });
-      const user = await this.retrieveUser(email);
+      const user = await this.retrieveUser({ email });
       return user;
     }
     throw new Error(`User ${email} exists`);
   }
 
-  async retrieveUser(email) {
-    if (await this.userExists(email)) {
-      const user = await this.users.findOne({ email });
-      return { id: user._id, email: user.email };
-    }
-    throw new Error(`User ${email} does not exist`);
+  async retrieveUser(obj) {
+    const user = await this.users.findOne(obj);
+    if (user !== null) return { id: user._id, email: user.email };
+    throw new Error('User does not exist');
+  }
+
+  async updateUser(filter, update) {
+    await this.retrieveUser(filter);
+    await this.users.updateOne(filter, { $set: update });
   }
 }
 
