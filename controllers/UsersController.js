@@ -6,6 +6,15 @@ class UsersController {
     const user = await dbClient.createUser(email, password);
     return user;
   }
+
+  static async getMe(req) {
+    const token = req.headers['x-token'];
+    if (token) {
+      const user = await dbClient.retrieveUser({ token });
+      return user;
+    }
+    throw new Error('Incorrect Auth format');
+  }
 }
 
 export default UsersController;
