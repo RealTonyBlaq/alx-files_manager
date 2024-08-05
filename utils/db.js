@@ -1,6 +1,13 @@
 import pkg from 'mongodb';
+import sha1 from 'sha1';
 
 const { MongoClient } = pkg;
+
+
+function hashPassword(password) {
+  return sha1(password);
+}
+
 
 class DBClient {
   constructor() {
@@ -20,6 +27,8 @@ class DBClient {
       await this.client.connect();
       this.db = this.client.db(this.dbName);
       this.connected = true;
+      this.users = this.db.collection('users');
+      this.files = this.db.collection('files');
     } catch (err) {
       console.error('Failed to connect to the database', err);
       this.connected = false;
@@ -32,8 +41,7 @@ class DBClient {
 
   async nbUsers() {
     try {
-      const usersCollection = this.db.collection('users');
-      return await usersCollection.countDocuments();
+      return await this.users.countDocuments();
     } catch (err) {
       console.error('Failed to count users', err);
       return 0;
@@ -42,12 +50,38 @@ class DBClient {
 
   async nbFiles() {
     try {
-      const filesCollection = this.db.collection('files');
-      return await filesCollection.countDocuments();
+      return await this.files.countDocuments();
     } catch (err) {
       console.error('Failed to count files', err);
       return 0;
     }
+  }
+
+  async userExists(email) {
+    try {
+      const user = await this.users.findOne({ email });
+      return user !== null;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  }
+
+  async createUser(email, password) {
+    if (!(await this.userExists(email))) {
+      password = hashPassword(password);
+      const reply = await this.users.insertOne({ email, password });
+      return await this.retrieveUser(email);
+    }
+    throw new Error(`User ${email} exists`);
+  }
+
+  async retrieveUser(email) {
+    if (await this.userExists(email)) {
+      const user = await this.users.findOne({ email });
+      return { id: user._id, email: user.email };
+    }
+    throw new Error(`User ${email} does not exist`);
   }
 }
 
