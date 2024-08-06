@@ -11,6 +11,6 @@ class FilesController {
     // Retrieveing the request body parameters
     const name = req.body.name;
     const type = req.body.type;
-    const 
+    const parentId = req.body.parentId;
   }
 }
