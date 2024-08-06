@@ -1,7 +1,7 @@
 import pkg from 'mongodb';
 import sha1 from 'sha1';
 
-const { MongoClient } = pkg;
+const { MongoClient, ObjectId } = pkg;
 
 function hashPassword(password) {
   return sha1(password);
@@ -76,7 +76,11 @@ class DBClient {
   }
 
   async retrieveUser(obj) {
-    const user = await this.users.findOne(obj);
+    const query = { ...obj };
+    if (obj._id) {
+      query._id = new ObjectId(obj._id);
+    }
+    const user = await this.users.findOne(query);
     if (user !== null) return { id: user._id, email: user.email };
     throw new Error('User does not exist');
   }
