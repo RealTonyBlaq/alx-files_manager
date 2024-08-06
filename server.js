@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(router);
 
 app.listen(PORT, () => {
-  console.log(`Server connected and listing on http://127.0.0.1:${PORT}`);
+  console.log(`Server connected and listening on http://127.0.0.1:${PORT}`);
 });
 
 export default app;
