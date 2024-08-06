@@ -18,6 +18,6 @@ class FilesController {
     const acceptedTypes = ['folder', 'file', 'image'];
 
     if (!name || name === '' || name === ' ') return res.status(400).send({ error: 'Missing name'});
-    if (!type || !acceptedTypes.includes())
+    if (!type || !acceptedTypes.includes(type)) return res.status(400).send({ error})
   }
 }
