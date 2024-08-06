@@ -11,13 +11,14 @@ class FilesController {
     // Retrieveing the request body parameters
     const name = req.body.name;
     const type = req.body.type;
-    const parentId = req.body.parentId;
+    const parentId = req.body.parentId || 0;
     const isPublic = req.body.isPublic;
     const data = req.body.data;
 
     const acceptedTypes = ['folder', 'file', 'image'];
 
     if (!name || name === '' || name === ' ') return res.status(400).send({ error: 'Missing name'});
-    if (!type || !acceptedTypes.includes(type)) return res.status(400).send({ error})
+    if (!type || !acceptedTypes.includes(type)) return res.status(400).send({ error: 'Missing type'});
+    if ()
   }
 }
