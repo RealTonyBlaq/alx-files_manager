@@ -15,8 +15,9 @@ class FilesController {
     const isPublic = req.body.isPublic;
     const data = req.body.data;
 
-    const accepted
+    const acceptedTypes = ['folder', 'file', 'image'];
 
     if (!name || name === '' || name === ' ') return res.status(400).send({ error: 'Missing name'});
+    if (!)
   }
 }
