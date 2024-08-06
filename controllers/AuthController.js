@@ -8,7 +8,7 @@ import redisClient from '../utils/redis.js';
 
 class AuthController {
   static async getConnect(req) {
-    const headers = req.headers.authorization;
+    const headers = req.headers.Authorization || req.headers.authorization;
     if (!headers) {
       throw new Error('Incorrect Auth format type');
     }
@@ -33,9 +33,10 @@ class AuthController {
   }
 
   static async getDisconnect(req) {
-    const token = req.headers['x-token'];
+    const token = req.headers['x-token'] || req.headers['X-Token'];
     if (token) {
-      await redisClient.del(token);
+      const key = `auth_${token}`;
+      await redisClient.del(key);
       await dbClient.updateUser({ token }, { token: '' });
       return;
     }
