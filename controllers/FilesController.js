@@ -15,6 +15,6 @@ class FilesController {
     const isPublic = req.body.isPublic;
     const data = req.body.data;
 
-    
+    if (!name || name === )
   }
 }
