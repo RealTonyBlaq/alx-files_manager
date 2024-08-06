@@ -19,6 +19,7 @@ class FilesController {
 
     if (!name || name === '' || name === ' ') return res.status(400).send({ error: 'Missing name'});
     if (!type || !acceptedTypes.includes(type)) return res.status(400).send({ error: 'Missing type'});
-    if (!data && type != 'folder') return res.status(Missing data)
+    if (!data && type !== 'folder') return res.status(400).send({ error: 'Missing data'});
+
   }
 }
