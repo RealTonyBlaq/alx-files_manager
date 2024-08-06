@@ -18,14 +18,13 @@ class AuthController {
       const [email, pwd] = atob(Base64).split(':');
 
       const password = sha1(pwd);
-      await dbClient.retrieveUser({ email, password });
+      const userDetails = await dbClient.retrieveUser({ email, password });
 
       const token = v4();
       const key = `auth_${token}`;
       const duration = 24 * 60 * 60;
 
-      await dbClient.updateUser({ email }, { token });
-      await redisClient.set(key, token, duration);
+      await redisClient.set(key, userDetails.id, duration);
 
       return { token };
     }
@@ -37,7 +36,6 @@ class AuthController {
     if (token) {
       const key = `auth_${token}`;
       await redisClient.del(key);
-      await dbClient.updateUser({ token }, { token: '' });
       return;
     }
     throw new Error('Incorrect Auth format');
