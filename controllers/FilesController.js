@@ -13,6 +13,8 @@ class FilesController {
     const type = req.body.type;
     const parentId = req.body.parentId;
     const isPublic = req.body.isPublic;
-    const data = req
+    const data = req.body.data;
+
+    
   }
 }
