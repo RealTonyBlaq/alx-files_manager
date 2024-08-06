@@ -12,7 +12,7 @@ class FilesController {
     const name = req.body.name;
     const type = req.body.type;
     const parentId = req.body.parentId || 0;
-    const isPublic = req.body.isPublic;
+    const isPublic = req.body.isPublic || false;
     const data = req.body.data;
 
     const acceptedTypes = ['folder', 'file', 'image'];
