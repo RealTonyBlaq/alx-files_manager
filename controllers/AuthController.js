@@ -35,6 +35,12 @@ class AuthController {
     const token = req.headers['x-token'] || req.headers['X-Token'];
     if (token) {
       const key = `auth_${token}`;
+      const _id = await redisClient.get(key);
+
+      if (!_id) throw new Error('Invalid token');
+
+      await dbClient.retrieveUser({ _id });
+
       await redisClient.del(key);
       return;
     }
