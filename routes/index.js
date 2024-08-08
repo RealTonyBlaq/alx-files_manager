@@ -14,6 +14,11 @@ router.get('/stats', async (req, res) => res.status(200).send(await AppControlle
 
 router.post('/files', async (req, res) => { await FilesController.postUpload(req, res); });
 
+router.get('/files/:id', async (req, res) => {
+  const { id } = req.params;
+  await FilesController.getShow(req, res, id);
+});
+
 router.get('/connect', async (req, res) => {
   try {
     const response = await AuthController.getConnect(req);
