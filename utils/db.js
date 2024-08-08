@@ -89,6 +89,43 @@ class DBClient {
     await this.retrieveUser(filter);
     await this.users.updateOne(filter, { $set: update });
   }
+
+  // Files Data manipulation
+  async createFile(obj) {
+    const query = { ...obj };
+    if (obj.parentId !== 0) {
+      query.parentId = new ObjectId(obj.parentId);
+    }
+    if (obj.userId) {
+      query.userId = new ObjectId(obj.userId);
+    }
+    const result = await this.files.insertOne(query);
+    const file = await this.retrieveFile({ _id: new ObjectId(result.insertedId) });
+    return file;
+  }
+
+  async fileExists(obj) {
+    const query = { ...obj };
+    try {
+      if (obj._id) {
+        query._id = new ObjectId(obj._id);
+      }
+      const file = await this.files.findOne(query);
+      return file !== null;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  async retrieveFile(obj) {
+    const query = { ...obj };
+    if (obj._id) {
+      query._id = new ObjectId(obj._id);
+    }
+    const file = await this.files.findOne(query);
+    if (file !== null) return file;
+    throw new Error('File does not exist');
+  }
 }
 
 const dbClient = new DBClient();
