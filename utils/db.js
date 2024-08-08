@@ -119,9 +119,12 @@ class DBClient {
 
   async retrieveFile(obj) {
     const query = { ...obj };
-    if (obj._id) {
-      query._id = new ObjectId(obj._id);
+    for (const key in obj) {
+      if (['_id', 'parentId', 'userId'].includes(key)) {
+        query[key] = new ObjectId(obj[key]);
+      }
     }
+
     const file = await this.files.findOne(query);
     if (file !== null) return file;
     throw new Error('File does not exist');
