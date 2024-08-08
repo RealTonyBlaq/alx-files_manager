@@ -6,6 +6,7 @@ import { writeFile, existsSync, mkdirSync } from 'fs';
 import { dirname } from 'path';
 import dbClient from '../utils/db.js';
 import UsersController from './UsersController.js';
+import redisClient from '../utils/redis.js';
 
 class FilesController {
   static async postUpload(req, res) {
@@ -78,6 +79,33 @@ class FilesController {
     writeFile(path, content, 'utf-8', (err) => {
       if (err) console.error(err);
     });
+  }
+
+  static async getShow(req, res, id) {
+    const token = req.headers['x-token'] || req.headers['X-Token'];
+    if (token) {
+      const key = `auth_${token}`;
+      const _id = await redisClient.get(key);
+
+      if (!_id) return res.status(401).send({ error: 'Unauthorized' });
+
+      let user;
+      try {
+        user = await dbClient.retrieveUser({ _id });
+      } catch (err) {
+        return res.status(401).send({ error: 'Unauthorized' });
+      }
+
+      let file;
+      try {
+        file = await dbClient.retrieveFile({ _id: id, userId: user.id });
+      } catch (err) {
+        return res.status(404).send({ error: 'Not found' });
+      }
+      if (file.localPath) delete file.localPath;
+      return res.status(200).send(file);
+    }
+    return res.status(401).send({ error: 'Unauthorized' });
   }
 }
 
