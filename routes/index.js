@@ -2,7 +2,7 @@
 
 import { Router } from 'express';
 import AppController from '../controllers/AppController.js';
-// import FilesController from '../controllers/FilesController.js';
+import FilesController from '../controllers/FilesController.js';
 import UsersController from '../controllers/UsersController.js';
 import AuthController from '../controllers/AuthController.js';
 
@@ -12,7 +12,7 @@ router.get('/status', (req, res) => res.status(200).send(AppController.getStatus
 
 router.get('/stats', async (req, res) => res.status(200).send(await AppController.getStats()));
 
-// router.post('/files', async (req, res) => await FilesController.postUpload(req, res));
+router.post('/files', async (req, res) => { await FilesController.postUpload(req, res); });
 
 router.get('/connect', async (req, res) => {
   try {
